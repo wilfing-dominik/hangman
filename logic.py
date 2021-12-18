@@ -81,3 +81,18 @@ def handle_input(word, lives):
 
         else:
             print("Invalid input")
+
+
+def is_game_over(guess, word, lives):    
+    if guess.lower() == word.lower():
+        print("You've guessed the whole word!")
+        return True
+    elif len(GUESSED_LETTERS) == len(ALL_UNIQUE_LETTERS):
+        print("You won!")
+        return True
+    elif lives < 1:
+        print("You ran out of lives!")
+        print(f"The wird was: {word}")
+        return True
+
+
