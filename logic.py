@@ -96,3 +96,17 @@ def is_game_over(guess, word, lives):
         return True
 
 
+def print_table(word, lives): # prints the lines for the word to be guessed 
+    print(word)
+    print(lives)
+    for letter in word:
+        if letter.lower() in GUESSED_LETTERS:
+            print(letter, end=' ')
+        elif letter == " ":
+            print(" ", end=' ')
+        else:
+            print("_", end=' ')
+
+
+def render_visuals(word, lives):
+    print_table(word, lives)
