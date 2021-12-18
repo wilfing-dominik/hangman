@@ -1,3 +1,6 @@
+import random
+import sys
+from utility import clearConsole, read_file
 def handle_input(word, lives):   
     while True:
         render_visuals(word, lives)
