@@ -4,6 +4,45 @@ from utility import clearConsole, read_file
 ALL_UNIQUE_LETTERS = [] # contains all letters of the word to be guessed, without duplicates
 GUESSED_LETTERS = [] # contains the letters that already have been correctly guessed, without duplicates
 TRIED_INVALID_LETTERS = [] # contains the valid, but unsuccesful guesses, without duplicates
+
+
+def get_random_word(difficulty): # selects a random line from the list of words, depending on the difficulty of the game, chooses the harder or the easier word from the line
+    word_pair_collection = read_file("countries-and-capitals", "txt")
+    word_pair = random.choice(word_pair_collection)
+
+    word_col = None
+    match difficulty:
+        case "normal":
+            word_col = 0
+            lives = 8
+        case "hard":
+            word_col = 1
+            lives = 4
+
+    word = word_pair.split(" | ")[word_col].strip()
+
+    for letter in word:
+        if letter not in ALL_UNIQUE_LETTERS and letter != " ":
+            ALL_UNIQUE_LETTERS.append(letter.lower())
+    return word, lives
+
+
+def ask_for_difficulty():
+    clearConsole()
+    while True:
+        print("(1) Normal")
+        print("(2) Hard")
+        user_input = input("Choose your difficulty: ")
+        clearConsole()
+
+        match user_input:
+            case "1":
+                return "normal"
+            case "2":
+                return "hard"
+        print("Invalid input")
+
+
 def handle_input(word, lives):   
     while True:
         render_visuals(word, lives)
