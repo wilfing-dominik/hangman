@@ -1,6 +1,9 @@
 import random
 import sys
 from utility import clearConsole, read_file
+ALL_UNIQUE_LETTERS = [] # contains all letters of the word to be guessed, without duplicates
+GUESSED_LETTERS = [] # contains the letters that already have been correctly guessed, without duplicates
+TRIED_INVALID_LETTERS = [] # contains the valid, but unsuccesful guesses, without duplicates
 def handle_input(word, lives):   
     while True:
         render_visuals(word, lives)
